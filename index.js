@@ -5,7 +5,7 @@ const app = express();
 const { testQ, getQ, getA, postQ, postA, helpQ, helpA, repQ, repA } = require('./dbMain/models.js');
 
 app.use(express.json());
-
+console.log(process.env);
 app.get('/test/:productId', (req, res) => {
   testQ(req.params.productId, req.params.count, req.params.page)
   .then((data) => res.status(200).send(data.rows))
