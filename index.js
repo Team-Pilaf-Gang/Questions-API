@@ -1,5 +1,6 @@
 const express = require('express');
-const PORT = 5005;
+require('dotenv').config();
+const PORT = process.env.PORT;
 const app = express();
 const { testQ, getQ, getA, postQ, postA, helpQ, helpA, repQ, repA } = require('./dbMain/models.js');
 
