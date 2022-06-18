@@ -6,6 +6,12 @@ const { testQ, getQ, getA, postQ, postA, helpQ, helpA, repQ, repA } = require('.
 
 app.use(express.json());
 
+app.use('/loaderio-09192cbd1ad00ef441a6a5bfa65410cb.txt', (req, res) => {
+  res.send('loaderio-09192cbd1ad00ef441a6a5bfa65410cb');
+  .catch(err => console.log(err))
+  .then();
+});
+
 app.get('/test/:productId', (req, res) => {
   testQ(req.params.productId, req.params.count, req.params.page)
   .then((data) => res.status(200).send(data.rows))
