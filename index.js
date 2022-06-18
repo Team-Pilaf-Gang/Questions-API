@@ -6,7 +6,7 @@ const { testQ, getQ, getA, postQ, postA, helpQ, helpA, repQ, repA } = require('.
 
 app.use(express.json());
 
-app.use('loaderio-6b9bbe54f0e851464e782e7fd406d9ae.txt', (req, res) => {
+app.use('/loaderio-6b9bbe54f0e851464e782e7fd406d9ae.txt', (req, res) => {
   res.send('loaderio-6b9bbe54f0e851464e782e7fd406d9ae')
   .catch(err => console.log(err))
   .then();
