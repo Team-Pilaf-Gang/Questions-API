@@ -1,5 +1,6 @@
 const { db } = require('./db.js');
 
+//query individual qestion and associated answers/images
 const getQ = (prodId, page, count) => {
   const requestQ =
     `SELECT json_build_object(
@@ -32,6 +33,7 @@ const getQ = (prodId, page, count) => {
   return db.query(requestQ, [prodId, count || 5, (count || 5) * ((page || 1) - 1)]);
 }
 
+//query individual answer and associated images
 const getA = (questId, page, count) => {
   const requestA =
     `SELECT json_build_object(
@@ -55,22 +57,6 @@ const getA = (questId, page, count) => {
 
   return db.query(requestA, [questId, count || 5, (count || 5) * ((page || 1) - 1)]);
 }
-
-const testQ = (prodId, page, count) => {
-    const requestQ = `SELECT question_id, question_body, question_date, asker_name, question_helpfulness,
-    (SELECT COALESCE(JSON_object_agg(agg.answer_id, agg), '[]')
-    FROM
-      (SELECT answer_id, body, date, answerer_name, helpfulness,
-        (SELECT COALESCE(JSON_agg(answerimages), '[]')
-        FROM answerimages WHERE answers.answer_id = answerimages.answer_id) AS photos
-      FROM answers
-    WHERE questions.question_id = answers.question_id) AS agg) AS answers
-  FROM questions WHERE product_id=$1 AND questions.reported=0  LIMIT $2 OFFSET $3`;
-
-
-    return db.query(requestQ, [prodId, count || 5, (count || 5) * ((page || 1) - 1)]);
-  }
-
 
 module.exports = {
   getQ,
