@@ -2,7 +2,7 @@
 
 A responsive backend API capable of horizontally scaling to over 150k users per minute with a less than 0.5% error rate
 
-Requires 3 EC2 instances running the express server, with NGINX load balancing, configured as below
+Requires 3 EC2 instances running the express server, with NGINX load balancing, configured as below:
 
 ```sh
 user www-data;
